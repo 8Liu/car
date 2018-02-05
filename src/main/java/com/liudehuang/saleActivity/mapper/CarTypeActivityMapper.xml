@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.liudehuang.saleActivity.dao.CarTypeActivityDao">
+	<resultMap type="com.liudehuang.saleActivity.model.CarTypeActivity" id="CarTypeActivityMap">
+		<id property="carTypeActivityId" column="car_type_activity_id"/>
+		<result property="carTypeId" column="car_type_id"/>
+		<result property="carActivityId" column="car_activity_id"/>
+		<result property="carName" column="car_type_name"/>
+		<result property="activityName" column="car_activity_name"/>
+		<result property="carPrice" column="car_type_price"/>
+		<result property="activityPrice" column="car_activity_price"/>
+		<result property="startime" column="car_activity_startime"/>
+		<result property="endTime" column="car_activity_endtime"/>
+	</resultMap>
+	
+	
+	<select id="list" resultMap="CarTypeActivityMap">
+		select 
+			cta.car_type_activity_id,
+			ct.car_type_id,
+			ca.car_activity_id,
+			ct.car_type_name,
+			ca.car_activity_name,
+			ct.car_type_price,
+			ca.car_activity_price,
+			ca.car_activity_startime,
+			ca.car_activity_endtime
+		from car_type_activity as cta 
+		LEFT JOIN car_type as ct ON cta.car_type_id = ct.car_type_id
+		left join car_activity as ca on cta.car_activity_id = ca.car_activity_id
+	</select>
+	<insert id="insertCarActivity" parameterType="com.liudehuang.saleActivity.model.param.CarActivityBO">
+		insert into car_type_activity(
+			car_type_id,
+			car_activity_id
+		)values(
+			#{carTypeId},
+			#{carActivityId}
+		)
+	</insert>
+	<select id="findCarTypeId" parameterType="com.liudehuang.saleActivity.model.param.CarBO" 
+	resultType="com.liudehuang.saleActivity.model.param.CarBO">
+		select 
+			car_type_id as carId
+		from car_type
+		where car_type_brand = #{carBrand}
+		and car_type_type = #{carType}
+		and car_type_series = #{carSeries}
+	</select>
+	<insert id="saveActivity" parameterType="com.liudehuang.saleActivity.model.param.ActivityBO">
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="carActivityId">
+			 SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into car_activity(
+			car_activity_name,
+			car_activity_price,
+			car_activity_startime,
+			car_activity_endTime
+		)values(
+			#{activityName},
+			#{activityPrice},
+			#{startime},
+			#{endTime}
+		)
+	</insert>
+	<update id="updateCarActivity" parameterType="com.liudehuang.saleActivity.model.param.CarActivityBO">
+		update car_type_activity 
+		set
+		<if test="carTypeId!=null and carTypeId !=''">
+			car_type_id = #{carTypeId},
+		</if>
+		<if test="carActivityId!=null and carActivityId !=''">
+			car_activity_id = #{carActivityId}
+		</if>
+		where car_type_activity_id = #{carTypeActivityId}
+	</update>
+	<update id="updateActivity" parameterType="com.liudehuang.saleActivity.model.param.ActivityBO">
+		update car_activity
+		set
+		<if test="activityName!=null and activityName!=''">
+			car_activity_name = #{activityName},
+		</if>
+		<if test="activityPrice!=null and activityPrice!=''">
+			car_activity_price = #{activityPrice},
+		</if>
+		<choose>
+			<when test="startime!=null and startime!=''">
+				car_activity_startime = #{startime},
+			</when>
+			<otherwise>
+				car_activity_startime = NOW(),
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="endTime!=null and endTime!=''">
+				car_activity_endtime = #{endTime}
+			</when>
+			<otherwise>
+				car_activity_endtime = NOW()
+			</otherwise>
+		</choose>
+		where car_activity_id = #{carActivityId}
+	</update>
+	
+	
+	<delete id="deleteActivity" parameterType="java.lang.Integer">
+		delete from car_activity
+		where car_activity_id = #{carActivityId}
+	</delete>
+	
+	<delete id="deleteCarActivity" parameterType="java.lang.Integer">
+		delete from car_type_activity
+		where car_type_activity_id = #{carTypeActivityId}
+	</delete>
+</mapper>

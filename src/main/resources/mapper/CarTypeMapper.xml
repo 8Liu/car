@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.liudehuang.carType.dao.CarTypeDao">
+	<resultMap type="com.liudehuang.carType.model.param.CarTypePO" id="carTypeMap">
+		<id property="car_type_id" column="car_type_id"/>
+		<result property="car_type_name" column="car_type_name"/>
+		<result property="car_type_price" column="car_type_price"/>
+		<result property="car_type_createtime" column="car_type_createtime"/>
+		<result property="car_type_person" column="car_type_person"/>
+		<result property="car_type_number" column="car_type_number"/>
+		<result property="car_type_brand" column="car_type_brand"/>
+	</resultMap>
+	<select id="list" resultMap="carTypeMap">
+		select
+			car_type_id,
+			car_type_name,
+			car_type_price,
+			car_type_createtime,
+			car_type_person,
+			car_type_number,
+			car_type_brand 
+		from car_type
+	</select>
+	<update id="update" parameterType="com.liudehuang.carType.model.param.CarTypePO">
+		update car_type
+		set 
+			<if test="car_type_name!=null and car_type_name!=''">
+			car_type_name = #{car_type_name},
+			</if>
+			<if test="car_type_price!=null and car_type_price!=''">
+			car_type_price = #{car_type_price},
+			</if>
+			<if test="car_type_createtime!=null and car_type_createtime!=''">
+			car_type_createtime = #{car_type_createtime},
+			</if>
+			<if test="car_type_person!=null and car_type_person!=''">
+			car_type_person = #{car_type_person},
+			</if>
+			<if test="car_type_number!=null and car_type_number!=''">
+			car_type_number = #{car_type_number},
+			</if>
+			<if test="car_type_brand!=null and car_type_brand!=''">
+			car_type_brand = #{car_type_brand}
+			</if>
+		where
+			car_type_id = #{car_type_id}
+	</update>
+	<insert id="save" parameterType="com.liudehuang.carType.model.param.CarTypePO" >
+		insert 
+		into car_type(
+			car_type_name,
+			car_type_price,
+			car_type_createtime,
+			car_type_person,
+			car_type_number,
+			car_type_brand 
+		)values(
+			#{car_type_name},
+			#{car_type_price},
+			#{car_type_createtime},
+			#{car_type_person},
+			#{car_type_number},
+			#{car_type_brand}
+		)
+	</insert>
+	<delete id="deleteById" parameterType="com.liudehuang.carType.model.param.CarTypePO">
+		delete from car_type 
+		where car_type_id = #{id}
+	</delete>
+	
+	<select id="search" parameterType="map" resultMap="carTypeMap">
+		select
+			car_type_id,
+			car_type_name,
+			car_type_price,
+			car_type_createtime,
+			car_type_person,
+			car_type_number,
+			car_type_brand 
+		from car_type
+		where 
+			<if test="name!=null and name!=''">
+				car_type_name like CONCAT("%",#{name},"%")
+			</if>
+			<if test="person!=null and person!=''">
+				and car_type_person like CONCAT("%",#{person},"%")
+			</if>
+			<if test="brand!=null and brand!=''">
+				and car_type_brand like CONCAT("%",#{brand},"%")
+			</if>
+			<if test="lowPrice!=null and lowPrice!='' and highPrice!=null and highPrice!=''">
+				and car_type_price between #{lowPrice} and #{highPrice}
+			</if>
+			<if test="time!=null and time!='' and time2!=null and time2!=''">
+				and car_type_createtime between #{time} and #{time2}
+			</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.liudehuang.carType.dao.CarTypeDao">
+	<resultMap type="com.liudehuang.carType.model.CarType" id="carTypeMap">
+		<id property="carId" column="car_type_id"/>
+		<result property="carName" column="carName"/>
+		<result property="carPrice" column="car_type_price"/>
+		<result property="time" column="car_type_createtime"/>
+		<result property="person" column="car_type_person"/>
+		<result property="number" column="car_type_number"/>
+		<result property="carBrand" column="car_type_brand"/>
+		<result property="carSeries" column="car_type_Series"/>
+		<result property="carType" column="car_type_type"/>
+	</resultMap>
+	<select id="list" resultMap="carTypeMap">
+		select
+			car_type_id,
+			CONCAT_WS('/',car_type_brand,car_type_series,car_type_type) as carName,
+			car_type_price, 
+			car_type_createtime,
+			car_type_person,
+			car_type_number,
+			car_type_brand 
+		from car_type
+		order by car_type_createtime DESC
+	</select>
+	<update id="update" parameterType="com.liudehuang.carType.model.CarType">
+		update car_type
+		set 
+			<if test="carPrice!=null and carPrice!=''">
+			car_type_price = #{carPrice},
+			</if>
+			<if test="time!=null and time!=''">
+			car_type_createtime = #{time},
+			</if>
+			<if test="person!=null and person!=''">
+			car_type_person = #{person},
+			</if>
+			<if test="number!=null and number!=''">
+			car_type_number = #{number},
+			</if>
+			<if test="carBrand!=null and carBrand!=''">
+			car_type_brand = #{carBrand},
+			</if>
+			<if test="carSeries!=null and carSeries!=''">
+			car_type_series = #{carSeries},
+			</if>
+			<if test="carType!=null and carType!=''">
+			car_type_type = #{carType}
+			</if>
+		where
+			car_type_id = #{carId}
+	</update>
+	<insert id="save" parameterType="com.liudehuang.carType.model.CarType" >
+		insert 
+		into car_type(
+			car_type_name,
+			car_type_price,
+			car_type_createtime,
+			car_type_person,
+			car_type_number,
+			car_type_brand,
+			car_type_series,
+			car_type_type
+		)values(
+			CONCAT_WS('/',#{carBrand},#{carSeries},#{carType}),
+			#{carPrice},
+			#{time},
+			#{person},
+			#{number},
+			#{carBrand},
+			#{carSeries},
+			#{carType}
+		)
+	</insert>
+	<delete id="deleteById" parameterType="com.liudehuang.carType.model.CarType">
+		delete from car_type 
+		where car_type_id = #{carId}
+	</delete>
+	
+	<select id="search" parameterType="map" resultMap="carTypeMap">
+		select
+			car_type_id,
+			car_type_name,
+			car_type_price,
+			car_type_createtime,
+			car_type_person,
+			car_type_number,
+			car_type_brand 
+		from car_type
+		where 
+			<if test="name!=null and name!=''">
+				car_type_name like CONCAT("%",#{name},"%")
+			</if>
+			<if test="person!=null and person!=''">
+				and car_type_person like CONCAT("%",#{person},"%")
+			</if>
+			<if test="brand!=null and brand!=''">
+				and car_type_brand like CONCAT("%",#{brand},"%")
+			</if>
+			<if test="lowPrice!=null and lowPrice!='' and highPrice!=null and highPrice!=''">
+				and car_type_price between #{lowPrice} and #{highPrice}
+			</if>
+			<if test="time!=null and time!='' and time2!=null and time2!=''">
+				and car_type_createtime between #{time} and #{time2}
+			</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+

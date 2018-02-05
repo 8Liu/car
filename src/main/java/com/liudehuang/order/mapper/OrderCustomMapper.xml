@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- namespace命名空间,作用就是对sql进行分类化的管理,理解为sql隔离
+    注意:使用mapper代理开发时，namespace有特殊作用,namespace等于mapper接口地址
+ -->
+<mapper namespace="com.liudehuang.order.dao.OrderCustomDao">
+        <!-- 查询订单，关联查询用户信息 -->
+    <!-- 查询订单，关联查询用户信息,使用resultMap实现 -->
+    <select id="findOrderUser" resultMap="OrdersUserResultMap">
+          select
+			t.id,
+			t.username,
+			t.sex,
+			t.address,
+			t.birthday,
+			t.relative_id,
+			o.number,
+			o.createtime
+		from t_user t
+		INNER JOIN orders o on t.relative_id=o.relative_id
+    </select>
+    <!-- 定义查询订单关联用户的 resultMap,将整个的查询结果映射到com.mybatis.entity.Orders中 -->
+    <resultMap type="com.liudehuang.order.entity.Orders" id="OrdersUserResultMap">
+        <!-- 配置映射的订单信息 -->
+        
+        <!-- id:查询列中的唯一标识,订单信息中的唯一标识，如果多列组成唯一标识(如：一般数据库设计中的字典表 使用联合主键)，就需要配置多个id 
+            column:订单信息的唯一标识 列
+            property:订单信息的唯一标识列所映射到orders中的那个属性(假如：数据库中orders表中的主键为orders_id,而实体属性名称为ordersId,
+                则这个配置应为<id column="orders_id" property="ordersId"/>,类似hibernate实体映射文件配置)。
+        -->
+        <id column="id" property="id"/>
+        <result column="number" property="number"/>
+        <result column="createtime" property="createTime"/>
+        <result column="note" property="note"/>
+        <result column="relative_id" property="relativeid" /> 
+         <result column="orders_id" property="ordersid"/>
+        <!-- 配置映射的关联用户信息 -->
+        
+        <!--association:用于映射关联查询单个对象的信息
+            property:要将关联查询的用户信息映射到Orders中那个属性
+          -->
+        <association property="user" javaType="com.liudehuang.order.entity.User">
+            <!-- id:关联查询用户的唯一标识 
+                column:指定唯一标识用户信息的列
+                property:映射到user的那个属性
+            -->
+            <id column="user_id" property="id"/>
+            <result column="username" property="username"/>
+            <result column="sex" property="sex"/>
+            <result column="address" property="address"/>
+            <result column="relative_id" property="relativeid"/>
+        </association>
+    </resultMap>
+    <insert id="insertUser" parameterType="com.liudehuang.order.entity.User">
+    	insert into t_user(
+    		username,
+    		birthday,
+    		sex,
+    		address,
+    		relative_id
+    	)values(
+    		#{username},
+    		#{birthday},
+    		#{sex},
+    		#{address},
+    		#{relativeid}
+    	)
+    </insert>
+    <insert id="insertOrder" parameterType="com.liudehuang.order.entity.Orders">
+    	insert into orders(
+    		number,
+    		createtime,
+    		note,
+    		relative_id,
+    		orders_id
+    	)values(
+    		#{createTime},
+    		#{number},
+    		#{note},
+    		#{relativeid},
+    		#{ordersid}
+    	)
+    	
+    </insert>
+    
+    <select id="findOrdersAndOrderDetail" resultMap="ordersAndOrderDetailResultMap">
+    	select 
+			o.*,
+		t.username,
+		t.sex,
+		t.address,
+		od.id as orderdetail_id,
+		od.items_id,
+		od.items_num,
+		od.orders_id
+		from orders o
+		LEFT JOIN t_user t on o.relative_id=t.relative_id
+		LEFT JOIN orderdetail od on od.orders_id=o.id
+    </select>
+    <resultMap type="com.liudehuang.order.entity.Orders" id="ordersAndOrderDetailResultMap" extends="OrdersUserResultMap">
+        <!-- 订单信息 -->
+        <!-- 关联用户信息 -->
+        <!-- 使用extends继承，不用在中配置订单信息和用户信息的映射-->
+        
+        <!-- 关联订单明细信息 
+            一个订单关联查询出了多条订单明细,要使用collection映射
+            collection:对关联查询到的多条记录映射到集合中
+            property:将关联查询到的多条记录映射到orders类的那个属性
+            ofType:指定映射的集合属性中pojo的类型
+        -->
+        <collection property="orderdetails" ofType="com.liudehuang.order.entity.OrderDetail">
+            <!-- id:唯一标识
+                 property：要将订单明细的唯一标识映射到com.mybatis.entity.OrderDetail的那个属性
+             -->
+            <id column="orderdetail_id" property="id"/>
+            <result column="items_id" property="itemsId"/>
+            <result column="items_num" property="itemsNum"/>
+            <result column="orders_id" property="ordersId"/>
+        </collection>
+    </resultMap>
+    
+    <insert id="insertOrderDetail" parameterType="com.liudehuang.order.entity.OrderDetail">
+    	insert into orderDetail(
+    		orders_id,
+    		items_id,
+    		items_num
+    	)values(
+    		#{ordersId},
+    		#{itemsId},
+    		#{itemsNum}
+    	)
+    	
+    </insert>
+    
+    
+    <!-- 查询用户即购买的商品信息的ResultMap -->
+        <resultMap type="com.liudehuang.order.entity.User" id="userAndItemsResultMap">
+            <!-- 用户信息 -->
+            <id column="user_id" property="id"/>
+            <result column="username" property="username"/>
+            <result column="sex" property="sex"/>
+            <result column="address" property="address"/>
+        <!-- 订单信息
+            一个用户对应多个订单，使用collection映射 -->
+            <collection property="ordersList" ofType="com.liudehuang.order.entity.Orders">
+                 <id column="id" property="id"/>
+                 <result column="number" property="number"/>
+                 <result column="createtime" property="createTime"/>
+                 <result column="note" property="note"/>
+            	 <result column="relative_id" property="relativeid"/>
+            	 <result column="orders_id" property="ordersid"/>
+             <!-- 订单明细
+                     一个订单包括 多个明细
+                  -->
+                  <collection property="orderdetails" ofType="com.liudehuang.order.entity.OrderDetail">
+                          <id column="orderdetail_id" property="id"/>
+                         <result column="items_id"   property="itemsId"/>
+                         <result column="items_num"  property="itemsNum"/>
+                         <result column="orders_id"  property="ordersId"/>
+                         <!-- 商品信息
+                              一个订单明细对应一个商品
+                           -->
+                       <association property="items" javaType="com.liudehuang.order.entity.Items">
+                           <id column="id" property="id"/>
+                           <result column="items_name" property="itemsName"/>
+                           <result column="items_detail" property="detail"/>
+                           <result column="items_price" property="price"/>
+                           <result column="items_id" property="itemsId"/>
+                       </association>
+                  </collection>
+              </collection>
+            
+        </resultMap>
+    <!-- 查询用户及用户购买的商品信息，使用resulaMap-->
+    <select id="findUserAndItemsResultMap" resultMap="userAndItemsResultMap">
+            SELECT 
+                   t1.*,
+                   t2.username,
+                   t2.sex,
+                   t2.address,
+                   t3.id orderdetail_id,
+                   t3.items_id,
+                   t3.items_num,
+                   t3.orders_id,
+                   t4.itemsname items_name,
+                   t4.detail items_detail,
+                   t4.price items_price
+            FROM
+                  orders t1,
+                  t_user t2,
+                  orderdetail t3,
+                  items t4
+            WHERE t1.relative_id =  t2.relative_id AND  t3.orders_id=t1.orders_id AND t3.items_id = t4.items_id
+    </select>
+</mapper>

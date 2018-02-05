@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <link rel="stylesheet" href="../../css/chart.css">
+    <script type="text/javascript" src="../../scripts/liandong.js"></script>
+</head>
+<body>
+ 
+
+	<!--     内容      -->
+	<div id="content" class="white">
+			<h1><img src="../../images/posts.png" alt="">配件销售 </h1>
+			<div class="bloc left" id="main">
+			</div>
+			<script src="../../scripts/echarts.js"></script>
+    		<script src="../../scripts/chart.js"></script>
+    		<div class="bloc right">
+    			<div id="sale">
+							<div class="rank">
+								汽车销量排行
+								<select id="one" onchange="change()">
+									<option  value="-1">请选择</option>
+									<option  value="0">按季度查询</option>
+									<option  value="1">按月查询</option>
+								</select>
+								<select id="two"><option>请选择</option></select>
+							</div>
+							<table>
+								<tr>
+									<td>排名</td>
+									<td>汽车名称</td>
+									<td>销量/(辆)</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>奥迪</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>奥迪</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>奥迪</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>奥迪</td>
+									<td>100</td>
+								</tr>
+							</table>
+					</div>
+			</div>
+			<div class="bloc bottom" id="boot">
+			</div>
+			<script src="../../scripts/echarts.js"></script>
+    		<script src="../../scripts/chart2.js"></script>
+    		<div class="bloc right">
+	    		<div id="sale">
+								<div class="rank">
+									员工汽车销售额排行
+									<select id="one" onchange="change()">
+										<option  value="-1">请选择</option>
+										<option  value="0">按季度查询</option>
+										<option  value="1">按月查询</option>
+									</select>
+								<select id="two"><option>请选择</option></select>
+							</div>
+							<table>
+								<tr>
+									<td>排名</td>
+									<td>销售员工姓名</td>
+									<td>销售额(*万元)</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>奥迪</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>奥迪</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>奥迪</td>
+									<td>100</td>
+								</tr>
+							</table>
+					</div>	
+			</div>
+	</div>
+    
+   
+</body>

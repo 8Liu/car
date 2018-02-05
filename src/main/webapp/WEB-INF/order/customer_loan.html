@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>后台管理系统</title>
+<link rel="stylesheet" href="../../css/table.css">
+<!-- jQuery AND jQueryUI -->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../js/min.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<link rel="stylesheet" href="../css/style2.css">
+<!--<script type="text/javascript" src="js/index.js"></script>-->
+</head>
+<body>
+
+<!--     内容      -->
+<div id="content" class="white">
+		<h1><img src="../../images/posts.png" alt="">客户贷款</h1>
+		<div class="button">
+			<input type="text" class="text"/>
+			<input type="button" class="serach" value="查找"/>
+			<input type="button" class="add" value="添加"/>
+		</div>
+		<div class="bloc">
+				<div class="title"> 客户贷款列表 </div>
+				<div class="content">
+						<table>
+								<thead>
+										<tr>
+												<th>客户姓名</th>
+												<th>贷款汽车名称</th>
+												<th>首付金额(*万元)</th>
+												<th>贷款金额(*万元)</th>
+												<th>申请时间</th>
+												<th>审核状态</th>
+												<th>审核人</th>
+												<th>操作</th>
+										</tr>
+								</thead>
+								<tbody>
+										<tr>
+												<td>刘天宇</td>
+												<td>奥迪/新嘉年华三厢/1.5升自动时尚型型</td>
+												<td>3.15</td>
+												<td>7.35</td>
+												<td>2018-01-02 23:06:20</td>
+												<td>通过</td>
+												<td>刘伟</td>
+												<td><a><img src="../../images/edit.png" alt=""></a><a><img src="../../images/delete.png" alt=""></a></td>
+										</tr>
+										<tr>
+												<td>刘天宇</td>
+												<td>奥迪/新嘉年华三厢/1.5升自动时尚型型</td>
+												<td>3.15</td>
+												<td>7.35</td>
+												<td>2018-01-02 23:06:20</td>
+												<td>通过</td>
+												<td>刘伟</td>
+												<td><a><img src="../../images/edit.png" alt=""></a><a><img src="../../images/delete.png" alt=""></a></td>
+										</tr>
+										<tr>
+												<td>刘天宇</td>
+												<td>奥迪/新嘉年华三厢/1.5升自动时尚型型</td>
+												<td>3.15</td>
+												<td>7.35</td>
+												<td>2018-01-02 23:06:20</td>
+												<td>通过</td>
+												<td>刘伟</td>
+												<td><a><img src="../../images/edit.png" alt=""></a><a><img src="../../images/delete.png" alt=""></a></td>
+										</tr>
+										<tr>
+												<td>刘天宇</td>
+												<td>奥迪/新嘉年华三厢/1.5升自动时尚型型</td>
+												<td>3.15</td>
+												<td>7.35</td>
+												<td>2018-01-02 23:06:20</td>
+												<td>通过</td>
+												<td>刘伟</td>
+												<td><a><img src="../../images/edit.png" alt=""></a><a><img src="../../images/delete.png" alt=""></a></td>
+										</tr>
+										<tr>
+												<td>刘天宇</td>
+												<td>奥迪/新嘉年华三厢/1.5升自动时尚型型</td>
+												<td>3.15</td>
+												<td>7.35</td>
+												<td>2018-01-02 23:06:20</td>
+												<td>通过</td>
+												<td>刘伟</td>
+												<td><a><img src="../../images/edit.png" alt=""></a><a><img src="../../images/delete.png" alt=""></a></td>
+										</tr>
+										<tr>
+												<td>刘天宇</td>
+												<td>奥迪/新嘉年华三厢/1.5升自动时尚型型</td>
+												<td>3.15</td>
+												<td>7.35</td>
+												<td>2018-01-02 23:06:20</td>
+												<td>通过</td>
+												<td>刘伟</td>
+												<td><a><img src="../../images/edit.png" alt=""></a><a><img src="../../images/delete.png" alt=""></a></td>
+										</tr>
+										<tr>
+												<td>刘天宇</td>
+												<td>奥迪/新嘉年华三厢/1.5升自动时尚型型</td>
+												<td>3.15</td>
+												<td>7.35</td>
+												<td>2018-01-02 23:06:20</td>
+												<td>通过</td>
+												<td>刘伟</td>
+												<td><a><img src="../../images/edit.png" alt=""></a><a><img src="../../images/delete.png" alt=""></a></td>
+										</tr>
+								</tbody>
+						</table>
+						<div class="left input">
+								<div class="selector" id="uniform-tableaction"><span>全部</span>
+										<select name="action" id="tableaction" style="opacity: 0;">
+												<option value="">全部</option>
+												<option value="">已审核</option>
+												<option >审核中</option>
+												<option >未处理</option>
+										</select>
+								</div>
+						</div>
+						<div class="pagination"> <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#" class="prev">«</a> <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#">1</a> <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#" class="current">2</a> ... <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#">21</a> <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#">22</a> <a href="http://www.grafikart.fr/demo/coreadmin/index.php?p=table#" class="next">»</a> </div>
+				</div>
+		</div>
+</div>
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+</body>
+</html>

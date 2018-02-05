@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.liudehuang.carPart.dao.CarPartDao">
+	<resultMap type="com.liudehuang.carPart.model.CarPart" id="carPartMap">
+		<id property="id" column="car_part_id"/>
+		<result property="name" column="car_part_name"/>
+		<result property="price" column="car_part_price"/>
+		<result property="createTime" column="car_part_createtime"/>
+		<result property="person" column="car_part_person"/>
+		<result property="number" column="car_part_number"/>
+		<result property="type" column="car_part_type"/>
+	</resultMap>
+	<select id="list" resultMap="carPartMap">
+		select 
+			car_part_name,
+			car_part_price,
+			car_part_createtime,
+			car_part_person,
+			car_part_number,
+			car_part_type
+		from car_part
+	</select>
+	<update id="update" parameterType="com.liudehuang.carPart.model.param.CarPartPO">
+		update car_part 
+		set 
+		<if test="id!=null and id!=''">
+			car_part_id = #{id},
+		</if>
+		<if test="name!=null and name!=''">
+		 	car_part_name = #{name},
+		</if>
+		<if test="price!=null and price!=''">
+			car_part_price = #{price},
+		</if>	
+		<if test="createTime!=null and createTime!=''">
+			car_part_createtime = #{createTime},
+		</if>
+		<if test="person!=null and person!=''">
+			car_part_person = #{person},
+		</if>
+		<if test="number!=null and number!=''">
+			car_part_number = #{number},
+		</if>
+		<if test="type!=null and type!=''">
+			car_part_type = #{type}
+		</if>
+		where car_part_id = #{id}
+	</update>
+	<insert id="save" parameterType="com.liudehuang.carPart.model.param.CarPartPO">
+		insert into car_part (
+			car_part_name,
+			car_part_price,
+			car_part_createtime,
+			car_part_person,
+			car_part_number,
+			car_part_type
+		)values(
+			 #{name},
+			 #{price},
+			 #{createTime},
+			 #{person},
+			 #{number},
+			 #{type}
+		)
+	</insert>
+	<delete id="deleteById" parameterType="com.liudehuang.carPart.model.param.CarPartBO">
+		delete from car_part
+		where car_part_id = #{id}
+	</delete>
+	
+	<select id="search" parameterType="map" resultMap="carPartMap">
+		select 
+			car_part_id,
+			car_part_name,
+			car_part_price,
+			car_part_createtime,
+			car_part_person,
+			car_part_number,
+			car_part_type
+		from car_part
+		where 
+			<if test="name!=null and name!=''">
+				car_part_name like CONCAT("%",#{name},"%")
+			</if>
+			<if test="person!=null and person!=''">
+				and car_part_person like CONCAT("%",#{person},"%")
+			</if>
+			<if test="brand!=null and brand!=''">
+				and car_part_type like CONCAT("%",#{type},"%")
+			</if>
+			<if test="lowPrice!=null and lowPrice!='' and highPrice!=null and highPrice!=''">
+				and car_part_price between #{lowPrice} and #{highPrice}
+			</if>
+			<if test="time!=null and time!='' and time2!=null and time2!=''">
+				and car_part_createtime between #{time} and #{time2}
+			</if>
+	</select>
+</mapper>

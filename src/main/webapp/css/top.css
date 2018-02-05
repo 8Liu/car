@@ -1,0 +1,54 @@
+#head{
+	height: 40px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	line-height: 40px;
+	border: 1px solid #000000;
+	color: #AEAEAE;
+	/*+text-shadow:0px 1px 0px #000000;*/
+	-moz-text-shadow: 0px 1px 0px #000000;
+	-webkit-text-shadow: 0px 1px 0px #000000;
+	-o-text-shadow: 0px 1px 0px #000000;
+	text-shadow: 0px 1px 0px #000000;
+	z-index: 9999;
+}
+#head .left{
+	position: absolute;
+	left: 15px;
+	top: 0;
+}
+#head .right{
+	position: absolute;
+	top: 0;
+	right: 15px;
+}
+#head a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#head a:hover{
+	text-decoration: underline;
+}
+#head a.button{
+	border: 1px solid #222222;
+	/*+border-radius:5px;*/
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px 5px 5px 5px;
+	display: block;
+	float: left;
+	width: 25px;
+	height: 25px;
+	margin-top: 6px;
+	margin: 6px 10px 0px 0px;
+	line-height: 32px;
+	text-align: center;
+	background-position: 0px -40px;
+}
+#head .logo{ 
+	float:left;
+	margin-right: 10px;
+}

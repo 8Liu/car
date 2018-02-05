@@ -1,0 +1,84 @@
+
+
+
+/** Shortcuts**/
+#content .center{
+	margin: 0 auto;
+}
+#content .bloc .shortcut{
+	width: 105px;
+	text-align: center;
+	padding: 10px 0;
+	text-decoration: none;
+	/*+border-radius:3px;*/
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px 3px 3px 3px;
+	margin: 5px;
+	color: #6D6D6D;
+	border: 1px solid #D0D2D4;
+	position: relative;
+	display: inline-block;
+}
+#content .bloc .shortcut span{
+	color: #FFFFFF;
+	display: block;
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	width: 23px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	font-weight: normal;
+	background: url(img/notif.png);
+}
+#content .bloc .shortcut:hover{
+	color: #2D2D2D;
+	border: 1px solid #6F7275;
+	background-color: #DBDCDE;
+}
+#content .bloc .shortcut img{
+	display: block;
+	margin: 0 auto 10px;
+	max-width: 48px;
+	max-height: 48px;
+}
+
+.cb, .clear{
+	clear: both;
+}
+
+/*×Ô¼ºÐ´µÄ  */
+#content .bottom .sales{
+	height:296px;
+}
+#content .bottom .sales .rank{
+	height:40px;
+	font-size:25px;
+	line-height:40px;
+}
+#content .bottom .sales .rank #one,#content .bottom .sales .rank #two{
+	height:30px;
+	width:60px;
+	border-radius:5px;
+	margin-left:5px;
+}
+
+#content .bottom .sales #sale1,#content .bottom .sales #sale2,#content .bottom .sales #sale3{
+	width:320px;
+	height:296px;
+	float:left;
+	
+}
+
+#content .bottom .sales #sale2,#content .bottom .sales #sale3{
+	width:320px;
+	height:296px;
+	float:left;
+	margin-left:10px;
+}
+
+
+

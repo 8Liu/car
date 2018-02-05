@@ -1,0 +1,212 @@
+/* content */
+#content{
+	margin: 28px 40px 0px 280px;
+	color: #6D6D6D;
+	padding: 0px 0px 20px;
+	font-size: 12px;
+	position: relative;
+}
+#content.nosidebar{
+	margin-left: 40px;
+}
+#content a{
+	color: #0A93CC;
+}
+#content a:hover{
+	color: #000000;
+	text-decoration: underline;
+}
+#content em, #content em a{
+	font-style: italic;
+	color: #B2B2B2;
+	font-weight: normal;
+}
+#content strong{
+	font-weight: bold;
+	color: #1A1616;
+}
+#content pre{
+	font-style: italic;
+	font-size: 1.1em;
+}
+#content h1{
+	font-family: HattoriHanzoLight;
+	color: #000000;
+	/*+text-shadow:0px 1px 0px #EDEDED;*/
+	-moz-text-shadow: 0px 1px 0px #EDEDED;
+	-webkit-text-shadow: 0px 1px 0px #EDEDED;
+	-o-text-shadow: 0px 1px 0px #EDEDED;
+	text-shadow: 0px 1px 0px #EDEDED;
+	font-size: 27px;
+	font-weight: normal;
+	height: 32px;
+	padding-top: 35px;
+	letter-spacing: 1px;
+}
+#content h1 a{
+	color: inherit;
+}
+#content h1 span{
+	font-size: 16px;
+}
+
+
+#content .bloc:first-child{
+	margin-top: 84px;
+}
+#content h1 img{
+	vertical-align: top;
+}
+#content .bloc{
+	margin: 20px 0px 0px;
+	background-color: #FFFFFF;
+	overflow: hidden;
+	/*+box-shadow:0px 5px 10px #AFAEAE;*/
+	-moz-box-shadow: 0px 5px 10px #AFAEAE;
+	-webkit-box-shadow: 0px 5px 10px #AFAEAE;
+	-o-box-shadow: 0px 5px 10px #AFAEAE;
+	box-shadow: 0px 5px 10px #AFAEAE;
+}
+#content .left, #content .right{
+	width: 49%;
+	float: left;
+}
+#content .right{
+	float: right;
+}
+#content .bloc .title{
+	height: 35px;
+	position: relative;
+	background: url(img/bloctitle.png);
+	line-height: 34px;
+	padding: 0 10px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #808080;
+	/*+text-shadow:0 -1px 0px #000;*/
+	-moz-text-shadow: 0 -1px 0px #000;
+	-webkit-text-shadow: 0 -1px 0px #000;
+	-o-text-shadow: 0 -1px 0px #000;
+	text-shadow: 0 -1px 0px #000;
+}
+
+#content.white .bloc .title {
+    background: url(../images/white-title.png);
+    color: #2C2C2C;
+    -moz-text-shadow: 0px 1px #FFFFFF;
+    -webkit-text-shadow: 0px 1px #FFFFFF;
+    -o-text-shadow: 0px 1px #FFFFFF;
+    text-shadow: 0px 1px #FFFFFF;
+    font-weight: bold;
+    border: none;
+}
+
+
+
+ /*Modal content*/ 
+.modal #content{
+	margin: 0;
+	padding: 0px;
+}
+.modal #content .bloc{
+	margin: 0px;
+	padding: 0px;
+	/*+text-shadow:none;*/
+	-moz-text-shadow: none;
+	-webkit-text-shadow: none;
+	-o-text-shadow: none;
+	text-shadow: none;
+}
+
+
+#content table{
+	width: 100%;
+	text-align: left;
+}
+#content table .picture img{
+	border: 4px solid #DFDFDF;
+	margin: 7px;
+	padding: 0px;
+}
+#content table .picture a:hover img{
+	border-color: #BDBDBD;
+}
+#content table h1, #content table h2, #content table h3, #content table h4, #content table h5{
+	display: inline;
+}
+#content table thead th{
+	border-bottom: 1px solid #BDBDBD;
+}
+#content table thead tr th{
+	font-weight: bold;
+	color: #151515;
+	font-size: 1.1em;
+	padding-bottom: 2px;
+}
+#content table thead tr th a{
+	color: #151515;
+}
+#content table tbody tr td{
+	height: 30px;
+	vertical-align: middle;
+	border-bottom: 1px solid #DADADA;
+	border-top: 1px solid #FFFFFF;
+}
+#content table tbody tr:nth-child(2n+1) td{
+	background-color: #F0F0F0;
+}
+#content table tbody tr:hover td{
+	background-color: #EAEAEA;
+	border-bottom: 1px solid #CACACA;
+	border-top: 1px solid #E2E2E2;
+}
+#content table tbody tr td.actions{
+	text-align: right;
+	padding-right: 10px;
+	width: 70px;
+}
+#content table.noalt tbody tr td{
+	background-color: transparent !important;
+	border-bottom: 1px solid #DADBDD;
+}
+#content table.noborder tbody tr td{
+	border: none;
+}
+#content table tbody tr td img{
+	padding-right: 5px;
+}
+/*×Ô¼ºÐ´µÄ*/
+#content{
+	background-image: url(../images/bg.png);
+}
+.button{
+	height:50px;
+	weight:100%;
+	border:1px solid red;
+	margin-top:40px;
+}
+.button .text{
+	margin-top:9px;
+	float:left;
+    width: 100px;
+    height: 20px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.button .serach,.button .add{
+	height:32px;
+	weight:28px;
+	float:left;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top:9px;
+    margin-left:5px;
+}
